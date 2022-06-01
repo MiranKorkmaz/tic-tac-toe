@@ -33,12 +33,71 @@ namespace tictactoe
                 }
                 // add method here as well
                 SetField();
+
+                // check winning condition
+                #region
+                char[] playerChars = { 'X', 'O' };
+                
+                foreach (char playerChar in playerChars)
+                {
+                    if(((playField[0,0] == playerChar) && (playField[0,1] == playerChar) && (playField[0,2] == player))
+                    || ((playField[1,0] == playerChar) && (playField[1,1] == playerChar) && (playField[1,2] == player))
+                    || ((playField[2,0] == playerChar) && (playField[2,1] == playerChar) && (playField[2,2] == player))
+                    || ((playField[0,0] == playerChar) && (playField[1,0] == playerChar) && (playField[2,0] == player))
+                    || ((playField[0,1] == playerChar) && (playField[1,1] == playerChar) && (playField[1,2] == player))
+                    || ((playField[0,2] == playerChar) && (playField[2,1] == playerChar) && (playField[2,2] == player))
+                    || ((playField[0,0] == playerChar) && (playField[1,1] == playerChar) && (playField[2,2] == player))
+                    || ((playField[0,2] == playerChar) && (playField[1,1] == playerChar) && (playField[2,0] == player))) {
+
+                        if(playerChar == 'X' || playerChar == 'O') {
+                            Console.WriteLine("\nPlayer 2 has won!");
+                        } else {
+                            Console.WriteLine("\nPlayer 1 has won!");
+                        }
+                        break;
+                    }
+                    
+                }
+
+                #endregion
+
+
+                #region   
                 do
                 {
                     Console.Write("\nPlayer {0}, choose your field! ", player);
-                    input = Convert.ToInt32(Console.ReadLine());
+                    try
+                    {
+                        input = Convert.ToInt32(Console.ReadLine());
+                    }
+                    catch (System.Exception)
+                    {
+                        Console.WriteLine("Enter a valid number");
+                    }
+                    if ((input == 1) && playField[0,0] == '1')
+                        validInput = true;
+                    else if ((input == 2) && playField[0,1] == '2')
+                        validInput = true;
+                    else if ((input == 3) && playField[0,2] == '3')
+                        validInput = true;
+                    else if ((input == 4) && playField[1,0] == '4')
+                        validInput = true;
+                    else if ((input == 5) && playField[1,1] == '5')
+                        validInput = true;
+                    else if ((input == 6) && playField[1,2] == '6')
+                        validInput = true;
+                    else if ((input == 7) && playField[2,0] == '7')
+                        validInput = true;
+                    else if ((input == 8) && playField[2,1] == '8')
+                        validInput = true;
+                    else if ((input == 9) && playField[2,2] == '9')
+                        validInput = true;
+                    else {
+                        Console.WriteLine("\nUse Another field");
+                        validInput = false;
+                    }
                 } while (!validInput);
-
+                #endregion
             } while (true);
         }
 
